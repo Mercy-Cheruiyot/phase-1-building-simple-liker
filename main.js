@@ -4,7 +4,25 @@ const FULL_HEART = '♥'
 
 // Your JavaScript code goes here!
 
-
+const shapeObject = {'♡':FULL_HEART,'♥':EMPTY_HEART}
+const colorHeart = {"red":"","":"red"}
+///
+let likeButtons = document.querySelectorAll(".like")
+for (el of likeButtons){
+el.addEventListener("click", (e) => {
+mimicServerCall()
+.then((respond) => {
+e.target.innerText = shapeObject[e.target.innerText]
+e.target.style.color = colorHeart[e.target.style.color]
+})
+.catch((error) => {
+document.getElementById("modal").className = ""
+setTimeout(function() {
+document.getElementById("modal").className = "hidden"
+}, 5000);
+})
+})
+}
 
 
 //------------------------------------------------------------------------------
